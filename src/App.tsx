@@ -1,5 +1,9 @@
+import Todo from "./todo"
+
 function App() {
-  return <h1>Hello World</h1>
+  return (
+    <Todo></Todo>
+    )
 }
 
 export default App
