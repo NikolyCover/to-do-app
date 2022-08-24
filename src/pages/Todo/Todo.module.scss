@@ -1,0 +1,12 @@
+@use 'variables';
+@use 'base';
+
+body {
+    background-color: variables.$p2;
+}
+
+.title {
+    color: variables.$p1;
+    margin: variables.$space-large 0 0 variables.$space-large;
+    font-size: 1.5rem;
+}
