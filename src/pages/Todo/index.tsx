@@ -1,4 +1,4 @@
-import Bullet from './Bullet'
+import Bullet from '../../components/Bullet'
 import styles from './Todo.module.scss'
 
 export default function Todo() {

@@ -1,0 +1,25 @@
+
+
+:root{
+    --p1: #51927E;
+    --p2: #F1FFFB;
+    --black: #1B1B1B;
+    --gray: #444444;
+    
+    --space-large: 4rem;
+    --space-medium: 2rem;
+    --space-small: 1rem;
+    --space-xsmall: .5rem;
+
+    font-size: 50%;
+}
+
+* {
+    font-family: Kanit, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  
+    vertical-align: baseline;
+    box-sizing: border-box;
+}

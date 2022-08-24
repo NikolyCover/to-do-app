@@ -1,6 +1,7 @@
+import React from 'react'
 import styles from './Task.module.scss'
 
-export default function Task() {
+const Task: React.FC = () => {
     return (
         <div className={styles.task}>
             <h1>Lorem Ipsum</h1>
@@ -8,3 +9,5 @@ export default function Task() {
         </div>
     )
 }
+
+export default Task
