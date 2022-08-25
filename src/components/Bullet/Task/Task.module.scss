@@ -4,4 +4,12 @@
     margin-top: var(--space-small);
     box-shadow: 0 0 4px rgb(165, 165, 165);
     padding: var(--space-medium);
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
 }

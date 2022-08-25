@@ -1,12 +1,29 @@
+.bullet {
+    
+}
+
 .title {
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+        font-weight: 500;
+        margin-right: 1rem;
+    }
 }
 
 .button {
     background-color: var(--p1);
     color: #FFF;
-    border-radius: var(--space-xsmall);
-    padding: var(--space-xsmall);
-    padding-left: var(--space-medium);
-    margin-top: var(----space-medium);
+    border-radius: var(--space-small);
+    height: var(--space-large);
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+
+    .icon {
+        margin-right: var(--space-small);
+    }
 }

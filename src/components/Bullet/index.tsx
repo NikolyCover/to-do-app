@@ -2,6 +2,7 @@ import styles from './Bullet.module.scss'
 import Task from "./Task"
 
 import { Plus as PlusIcon } from 'react-feather'
+import { PlayCircle as PlayIcon } from 'react-feather'
 import React from 'react'
 
 /**
@@ -36,10 +37,13 @@ interface Props {
 
 const Bullet: React.FC<Props> = ({ name }) => {
     return (
-        <div>
-            <h1 className={styles.title}>{name}</h1>
+        <div className={styles.bullet}>
+            <div className={styles.title}>
+                <h1>{name}</h1>
+                <PlayIcon size={20}/>
+            </div>
             <button className={styles.button}>
-                <PlusIcon size={16}/>
+                <PlusIcon className={styles.icon} size={16}/>
                 Create task
             </button>
 

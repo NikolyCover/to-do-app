@@ -5,7 +5,12 @@ export default function Todo() {
     return (
         <>
             <h1 className={styles.title}>TODO APP</h1>
-            <Bullet name='Not started'/>
+            <main className={styles.todoList}>
+                <Bullet name='Not started'/>
+                <Bullet name='In progress'/>
+                <Bullet name='Stoped'/>
+                <Bullet name='Done'/>
+            </main>
         </>
     )
 }
