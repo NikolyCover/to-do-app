@@ -32,7 +32,7 @@ import React from 'react'
 
 interface Props {
     name: string
-    Icon: Icon
+    Icon: any
 }
 
 const Bullet: React.FC<Props> = ({ name, Icon}) => {

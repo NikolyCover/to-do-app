@@ -1,6 +1,7 @@
 // @use '../../variables';
 
 .task {
+    position: relative;
     margin-top: var(--space-small);
     box-shadow: 0 0 4px rgb(165, 165, 165);
     padding: var(--space-medium);
@@ -11,5 +12,11 @@
 
     p {
         font-size: 1.5rem;
+    }
+
+    .moreIcon {
+        position: absolute;
+        right: var(--space-small);
+        top: var(--space-small);
     }
 }
