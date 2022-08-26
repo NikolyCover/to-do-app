@@ -13,5 +13,6 @@ body {
     margin: 0 var(--space-large);
     display: grid;
     column-gap: var(--space-large);
-    grid-template-columns: repeat(4, 35rem);
+    row-gap: var(--space-large);
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }

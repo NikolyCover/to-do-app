@@ -45,9 +45,7 @@ const Bullet: React.FC<Props> = ({ name }) => {
             <button className={styles.button}>
                 <PlusIcon className={styles.icon} size={16}/>
                 Create task
-            </button>
-
-           
+            </button>           
             <Task/>
         </div>
     )
