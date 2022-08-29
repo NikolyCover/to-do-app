@@ -20,6 +20,8 @@
         position: absolute;
         right: var(--space-small);
         top: var(--space-small);
+        
+
     }
 
     .popover {
@@ -35,14 +37,12 @@
             width: 100%;
             background-color: #FFF;
             padding: var(--space-small) var(--space-medium);
-        }
+            transition: all .2;
 
-        button:hover {
-            background-color: var(--p2);
-        }
-
-        button:active {
-            color: var(--p1);
+            &:hover {
+                //background-color: var(--p3);
+                color: var(--p1-hover);
+            }
         }
     }
 }

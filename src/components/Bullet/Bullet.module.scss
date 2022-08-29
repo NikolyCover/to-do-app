@@ -22,8 +22,15 @@
     align-items: center;
     padding: 2rem;
     width: 100%;
+    transition: all .2s;
 
     .icon {
         margin-right: var(--space-small);
+        stroke: #FFF;
+    }
+
+    &:hover{
+        background-color: var(--p1-hover);
     }
 }
+
