@@ -1,10 +1,12 @@
 // @use '../../variables';
 
 .task {
+    background-color: #FFF;
     position: relative;
     margin-top: var(--space-small);
     box-shadow: 0 0 4px rgb(165, 165, 165);
     padding: var(--space-medium);
+    border-radius: var(--space-xsmall);
 
     h1 {
         font-size: 2rem;
@@ -18,5 +20,29 @@
         position: absolute;
         right: var(--space-small);
         top: var(--space-small);
+    }
+
+    .popover {
+        box-shadow: 0 0 4px rgb(165, 165, 165);
+        border-radius: var(--space-xsmall);
+        position: absolute;
+        right: var(--space-small);
+        top: 3rem;
+        font-size: 1.5rem;
+
+        button {
+            display: block;
+            width: 100%;
+            background-color: #FFF;
+            padding: var(--space-small) var(--space-medium);
+        }
+
+        button:hover {
+            background-color: var(--p2);
+        }
+
+        button:active {
+            color: var(--p1);
+        }
     }
 }
