@@ -2,7 +2,8 @@ import styles from './Bullet.module.scss'
 import Task from "./Task"
 
 import { Icon, Plus as PlusIcon } from 'react-feather'
-import React from 'react'
+import React, { useRef } from 'react'
+import Modal, { ModalHandles } from '../Modal'
 
 /**
  * import PlusIcon from '../../assets/plus.svg'
@@ -36,16 +37,19 @@ interface Props {
 }
 
 const Bullet: React.FC<Props> = ({ label, Icon}) => {
+    const modalRef = useRef<ModalHandles>(null)
+
     return (
         <div className={styles.bullet}>
             <div className={styles.title}>
                 <h1>{label}</h1>
                 <Icon size={20} className={styles.icon} />
             </div>
-            <button className={styles.button}>
+            <button className={styles.button} onClick={modalRef.current?.handleModal}>
                 <PlusIcon className={styles.icon} size={16} />
                 Create task
-            </button>           
+            </button>
+            <Modal ref={modalRef}/> 
             <Task/>
         </div>
     )

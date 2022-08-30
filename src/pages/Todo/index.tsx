@@ -8,9 +8,9 @@ export default function Todo() {
             <h1 className={styles.title}>TODO APP</h1>
             <main className={styles.todoList}>
                 <Bullet label='Not started' Icon={PlayCircle}/>
-                <Bullet label='Not started' Icon={Loader}/>
-                <Bullet label='Not started' Icon={PauseCircle}/>
-                <Bullet label='Not started' Icon={Check}/>
+                <Bullet label='In progress' Icon={Loader}/>
+                <Bullet label='Paused' Icon={PauseCircle}/>
+                <Bullet label='Done' Icon={Check}/>
             </main>
         </>
     )
