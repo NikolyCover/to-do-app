@@ -1,19 +1,38 @@
-import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
 import styles from './Modal.module.scss'
 import { X } from 'react-feather'
+import { ITask } from '../../interfaces/ITask'
 
 export interface ModalHandles {
-    handleModal: () => void
+    handleModalVisibility: () => void
 }
 
-const Modal: React.ForwardRefRenderFunction<ModalHandles> = ({}, ref) => {
-    const [isVisible, setIsVisible] = useState(false)
+interface Props {
+    createTask: (bullet: string, title: string, description: string) => void
+    bulletLabel: string
+}
 
-    const handleModal = useCallback(() => {
+const Modal: React.ForwardRefRenderFunction<ModalHandles, Props> = ({createTask, bulletLabel}, ref) => {
+    const [isVisible, setIsVisible] = useState(false)
+    const [inputs, setInputs] = useState<ITask>({})
+
+    const handleModalVisibility = useCallback(() => {
         setIsVisible(visible => !visible)
     }, [])
 
-    useImperativeHandle(ref, () => ({ handleModal }))
+
+    const handleFormChange = useCallback((event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const name = event.currentTarget.name;
+        const value = event.currentTarget.value;
+        setInputs(values => ({...values, name: value}))
+    }, [])
+
+    const handleSubmit = useCallback((event: React.FormEvent) => {
+        event.preventDefault()
+        createTask(bulletLabel, inputs.title, inputs.description)
+    }, [])
+
+    useImperativeHandle(ref, () => ({ handleModalVisibility }))
 
     if(!isVisible){
         return null
@@ -22,17 +41,20 @@ const Modal: React.ForwardRefRenderFunction<ModalHandles> = ({}, ref) => {
     return (
         <div className={styles['modal-context']}>                        
             <div className={styles.modal}>
-                <button onClick={handleModal} className={styles['closeIcon']}>
+                <button onClick={handleModalVisibility} className={styles['closeIcon']}>
                     <X/>
                 </button>
-                <fieldset>
-                    <label htmlFor='title'>Title</label>
-                    <input type='text' id='title'/>
-                </fieldset>
-                <fieldset>
-                    <label htmlFor='descr'>Descrição</label>
-                    <textarea rows={4} id='descr'/>
-                </fieldset>
+                <form onSubmit={handleSubmit}>
+                    <fieldset>
+                        <label htmlFor='title'>Title</label>
+                        <input type='text' id='title' name='title' onChange={handleFormChange}/>
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor='descr'>Descrição</label>
+                        <textarea rows={4} id='descr' name='descr' onChange={handleFormChange}/>
+                    </fieldset>
+                    <button type='submit'>Create</button>
+                </form>
             </div>
         </div>
     )

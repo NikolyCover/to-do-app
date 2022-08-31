@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styles from './Task.module.scss'
 import { MoreHorizontal } from 'react-feather'
+import { ITask } from '../../../interfaces/ITask'
 
-const Task: React.FC = () => {
+const Task: React.FC<ITask> = ({ title, description }) => {
     const [optionsOpen, setOptionsOpen] = useState(false) 
 
     return (
@@ -18,8 +19,8 @@ const Task: React.FC = () => {
                     </div>
                 )
             }
-            <h1>Lorem Ipsum</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <h1>{ title }</h1>
+            <p>{ description }</p>
         </div>
     )
 }
