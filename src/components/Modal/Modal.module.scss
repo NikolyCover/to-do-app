@@ -11,7 +11,31 @@
     justify-content: center;
     
     .modal {
+        position: relative;
         background-color: #FFF;
         font-size: 4rem;
+        padding: var(--space-medium);
+        border-radius: var(--space-xsmall);
+
+        .closeIcon {
+            position: absolute;
+            top: var(--space-xsmall);
+            right: var(--space-xsmall);
+        }
+
+        fieldset {
+
+            > label {
+                font-size: 2rem;
+            }
+            
+            > input, textarea {
+                width: 100%;
+                border: 1px solid var(--gray);
+                border-radius: var(--space-xsmall);
+                padding: var(--space-xsmall) var(--space-small);
+                font-size: 1.8rem;
+            }
+        }
     }
 }

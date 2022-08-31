@@ -45,7 +45,7 @@ const Bullet: React.FC<Props> = ({ label, Icon}) => {
                 <h1>{label}</h1>
                 <Icon size={20} className={styles.icon} />
             </div>
-            <button className={styles.button} onClick={modalRef.current?.handleModal}>
+            <button className={styles.button} onClick={() => modalRef.current?.handleModal()}>
                 <PlusIcon className={styles.icon} size={16} />
                 Create task
             </button>
