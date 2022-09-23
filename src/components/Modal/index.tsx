@@ -2,19 +2,21 @@ import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef,
 import styles from './Modal.module.scss'
 import { X } from 'react-feather'
 import { ITask } from '../../interfaces/ITask'
+import { useTasks } from '../../context'
 
 export interface ModalHandles {
     handleModalVisibility: () => void
 }
 
 interface Props {
-    createTask: (bullet: string, title: string, description: string) => void
-    bulletLabel: string
+    bullet: string
 }
 
-const Modal: React.ForwardRefRenderFunction<ModalHandles, Props> = ({createTask, bulletLabel}, ref) => {
+const Modal: React.ForwardRefRenderFunction<ModalHandles, Props> = ({ bullet }, ref) => {
     const [isVisible, setIsVisible] = useState(false)
-    const [inputs, setInputs] = useState({ title: '', description: '' })
+    const [inputs, setInputs] = useState<ITask>({ title: '', description: '' })
+
+    const { createTask } = useTasks()
 
     const handleModalVisibility = useCallback(() => {
         setIsVisible(visible => !visible)
@@ -29,7 +31,11 @@ const Modal: React.ForwardRefRenderFunction<ModalHandles, Props> = ({createTask,
 
     const handleSubmit = useCallback((event: React.FormEvent) => {
         event.preventDefault()
-        createTask(bulletLabel, inputs.title, inputs.description)
+
+        createTask({ ...inputs, bullet })
+        setInputs({ title: '', description: '' }) //limpar "cache"
+
+        handleModalVisibility()
     }, [ inputs ])
 
     useImperativeHandle(ref, () => ({ handleModalVisibility }))

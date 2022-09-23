@@ -2,9 +2,10 @@ import styles from './Bullet.module.scss'
 import Task from "./Task"
 
 import { Icon, Plus as PlusIcon } from 'react-feather'
-import React, { useCallback, useRef } from 'react'
+import React, { useCallback, useContext, useMemo, useRef } from 'react'
 import Modal, { ModalHandles } from '../Modal'
 import { ITask } from '../../interfaces/ITask'
+import { useTasks } from '../../context'
 
 /**
  * import PlusIcon from '../../assets/plus.svg'
@@ -35,11 +36,12 @@ import { ITask } from '../../interfaces/ITask'
 interface Props {
     label: string
     Icon: Icon
-    tasks: Array<ITask>
-    createTask: (bullet: string, title: string, description: string) => void
 }
 
-const Bullet: React.FC<Props> = ({ label, Icon, tasks, createTask}) => {
+const Bullet: React.FC<Props> = ({ label, Icon }) => {
+    const { filterTasks, tasks } = useTasks()
+
+    const filteredTasksByLabel = useMemo(() => filterTasks(label), [ tasks, label ])
     const modalRef = useRef<ModalHandles>(null)
 
     return (
@@ -52,10 +54,10 @@ const Bullet: React.FC<Props> = ({ label, Icon, tasks, createTask}) => {
                 <PlusIcon className={styles.icon} size={16} />
                 Create task
             </button>
-            <Modal ref={modalRef} createTask={createTask} bulletLabel={label}/>
+            <Modal ref={modalRef} bullet={label}/>
             {
-                tasks?.map( task => (
-                    <Task title={task.title} description={task.description} />
+                filteredTasksByLabel?.map((task, index) => (
+                    <Task title={task.title} description={task.description} key={index}/>
                 ))
             }
         </div>
