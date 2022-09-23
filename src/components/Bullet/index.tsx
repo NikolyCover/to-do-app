@@ -35,7 +35,7 @@ import { ITask } from '../../interfaces/ITask'
 interface Props {
     label: string
     Icon: Icon
-    tasks: Array<ITask> | null
+    tasks: Array<ITask>
     createTask: (bullet: string, title: string, description: string) => void
 }
 

@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './Modal.module.scss'
 import { X } from 'react-feather'
 import { ITask } from '../../interfaces/ITask'
@@ -14,23 +14,23 @@ interface Props {
 
 const Modal: React.ForwardRefRenderFunction<ModalHandles, Props> = ({createTask, bulletLabel}, ref) => {
     const [isVisible, setIsVisible] = useState(false)
-    const [inputs, setInputs] = useState<ITask>({})
+    const [inputs, setInputs] = useState({ title: '', description: '' })
 
     const handleModalVisibility = useCallback(() => {
         setIsVisible(visible => !visible)
     }, [])
 
-
     const handleFormChange = useCallback((event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const name = event.currentTarget.name;
         const value = event.currentTarget.value;
-        setInputs(values => ({...values, name: value}))
+
+        setInputs(values => ({...values, [name]: value }) )
     }, [])
 
     const handleSubmit = useCallback((event: React.FormEvent) => {
         event.preventDefault()
         createTask(bulletLabel, inputs.title, inputs.description)
-    }, [])
+    }, [ inputs ])
 
     useImperativeHandle(ref, () => ({ handleModalVisibility }))
 
@@ -50,8 +50,8 @@ const Modal: React.ForwardRefRenderFunction<ModalHandles, Props> = ({createTask,
                         <input type='text' id='title' name='title' onChange={handleFormChange}/>
                     </fieldset>
                     <fieldset>
-                        <label htmlFor='descr'>Descrição</label>
-                        <textarea rows={4} id='descr' name='descr' onChange={handleFormChange}/>
+                        <label htmlFor='description'>Descrição</label>
+                        <textarea rows={4} id='description' name='description' onChange={handleFormChange}/>
                     </fieldset>
                     <button type='submit'>Create</button>
                 </form>
